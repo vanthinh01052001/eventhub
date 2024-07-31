@@ -1,7 +1,8 @@
-import {View, Text, StyleProp, ViewStyle, TextStyle} from 'react-native';
 import React, {ReactNode} from 'react';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleProp, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
 import TextComponent from './TextComponent';
+import {globalStyles} from '../styles/globalStyles';
+import {appColors} from '../constants/appColors';
 
 interface Props {
   icon?: ReactNode;
@@ -26,11 +27,37 @@ const ButtonComponent = (props: Props) => {
     onPress,
     iconFlex,
   } = props;
-  return (
-    <TouchableOpacity>
+  return type === 'primary' ? (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[
+        globalStyles.button,
+        {
+          backgroundColor: color ?? appColors.primary,
+        },
+        styles,
+      ]}>
       {icon && iconFlex === 'left' && icon}
-      <TextComponent text={text} color={textColor} styles={textStyles} />
+      <TextComponent
+        text={text}
+        // font={fontFamilies.regular}
+        color={textColor ?? appColors.white}
+        styles={[
+          textStyles,
+          {
+            marginLeft: icon ? 12 : 0,
+          },
+        ]}
+        flex={icon && iconFlex === 'right' ? 1 : 0}
+      />
       {icon && iconFlex === 'right' && icon}
+    </TouchableOpacity>
+  ) : (
+    <TouchableOpacity>
+      <TextComponent
+        text={text}
+        color={type === 'link' ? appColors.link : appColors.text}
+      />
     </TouchableOpacity>
   );
 };
