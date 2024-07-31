@@ -6,14 +6,14 @@ export const inputStyles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: appColors.gay3,
+        borderColor: appColors.gray3,
         backgroundColor: appColors.white,
         width: '100%',
         minHeight: 56,
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15,
-        marginBottom: 19
+        marginBottom: 20
     },
     textInput: {
         padding: 0,

@@ -3,6 +3,7 @@ import {StyleProp, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
 import TextComponent from './TextComponent';
 import {globalStyles} from '../styles/globalStyles';
 import {appColors} from '../constants/appColors';
+import {fontFamilies} from '../constants/fontFamilies';
 
 interface Props {
   icon?: ReactNode;
@@ -40,12 +41,13 @@ const ButtonComponent = (props: Props) => {
       {icon && iconFlex === 'left' && icon}
       <TextComponent
         text={text}
-        // font={fontFamilies.regular}
+        font={fontFamilies.medium}
         color={textColor ?? appColors.white}
         styles={[
           textStyles,
           {
             marginLeft: icon ? 12 : 0,
+            fontSize: 16,
           },
         ]}
         flex={icon && iconFlex === 'right' ? 1 : 0}
