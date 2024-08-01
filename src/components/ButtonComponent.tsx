@@ -13,6 +13,7 @@ interface Props {
   styles?: StyleProp<ViewStyle>;
   textColor?: string;
   textStyles?: StyleProp<TextStyle>;
+  textFont?: string;
   onPress?: () => void;
   iconFlex?: 'right' | 'left';
 }
@@ -25,6 +26,7 @@ const ButtonComponent = (props: Props) => {
     styles,
     textColor,
     textStyles,
+    textFont,
     onPress,
     iconFlex,
   } = props;
@@ -33,15 +35,18 @@ const ButtonComponent = (props: Props) => {
       onPress={onPress}
       style={[
         globalStyles.button,
+        globalStyles.shadow,
         {
           backgroundColor: color ?? appColors.primary,
+          marginBottom: 17,
+          width: '80%',
         },
         styles,
       ]}>
       {icon && iconFlex === 'left' && icon}
       <TextComponent
         text={text}
-        font={fontFamilies.medium}
+        font={textFont ?? fontFamilies.medium}
         color={textColor ?? appColors.white}
         styles={[
           textStyles,
@@ -55,7 +60,7 @@ const ButtonComponent = (props: Props) => {
       {icon && iconFlex === 'right' && icon}
     </TouchableOpacity>
   ) : (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <TextComponent
         text={text}
         color={type === 'link' ? appColors.link : appColors.text}

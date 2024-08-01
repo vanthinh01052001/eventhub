@@ -1,14 +1,6 @@
-import {
-  View,
-  Text,
-  Button,
-  ViewBase,
-  Image,
-  Switch,
-  SwitchComponent,
-} from 'react-native';
+import {Lock, Sms} from 'iconsax-react-native';
 import React, {useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Image, Switch} from 'react-native';
 import {
   ButtonComponent,
   InputComponent,
@@ -17,14 +9,12 @@ import {
   SpaceComponent,
   TextComponent,
 } from '../../components';
-import {globalStyles} from '../../styles/globalStyles';
-import {appColors} from '../../constants/appColors';
-import {Lock, Sms} from 'iconsax-react-native';
 import ContainerComponent from '../../components/ContainerComponent';
+import {appColors} from '../../constants/appColors';
 import SocialLogin from './components/SocialLogin';
 const textLogo = require('../../assets/images/img-logo.png');
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRemember, setIsRemember] = useState(true);
@@ -55,7 +45,7 @@ const LoginScreen = () => {
         {/* email  */}
         <InputComponent
           value={email}
-          placeholder="Enter your email..."
+          placeholder="abc@email.com"
           onChange={val => setEmail(val)}
           allowClear
           affix={<Sms size={22} color={appColors.gray} />}
@@ -64,7 +54,7 @@ const LoginScreen = () => {
         {/* password  */}
         <InputComponent
           value={password}
-          placeholder="Enter your password..."
+          placeholder="Your password"
           onChange={val => setPassword(val)}
           isPassword
           affix={<Lock size={22} color={appColors.gray} />}
@@ -93,7 +83,7 @@ const LoginScreen = () => {
       </SectionComponent>
       <SpaceComponent height={16} />
       {/* button sign in  */}
-      <SectionComponent>
+      <SectionComponent styles={[{alignItems: 'center'}]}>
         <ButtonComponent text="SIGN IN" type="primary" />
       </SectionComponent>
       {/* social login: google, facebook */}
@@ -105,7 +95,11 @@ const LoginScreen = () => {
             text="Don’t have an account?"
             styles={{marginRight: 5}}
           />
-          <ButtonComponent type="link" text="Sign up" />
+          <ButtonComponent
+            type="link"
+            text="Sign up"
+            onPress={() => navigation.navigate('SignUpScreen')}
+          />
         </RowComponent>
       </SectionComponent>
     </ContainerComponent>
