@@ -12,6 +12,7 @@ import {
 import ContainerComponent from '../../components/ContainerComponent';
 import {appColors} from '../../constants/appColors';
 import SocialLogin from './components/SocialLogin';
+import authenticationAPI from '../../apis/authApi';
 const textLogo = require('../../assets/images/img-logo.png');
 
 const LoginScreen = ({navigation}: any) => {
@@ -19,12 +20,11 @@ const LoginScreen = ({navigation}: any) => {
   const [password, setPassword] = useState('');
   const [isRemember, setIsRemember] = useState(true);
   const handleLogin = async () => {
-    const api = `http://192.168.42.160:3001/hello`;
     try {
-      const res = await fetch(api, {method: 'get'});
+      const res = await authenticationAPI.HandleAuthentication(`hello`);
       console.log(res);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (
