@@ -15,6 +15,16 @@ export const inputStyles = StyleSheet.create({
         paddingHorizontal: 15,
         marginBottom: 20
     },
+    otp:{
+        borderRadius: 12,
+        borderWidth: 1,
+        borderColor: appColors.gray3,
+        backgroundColor: appColors.white,
+        width: '20%',
+        minHeight: 56,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     textInput: {
         padding: 0,
         margin: 0,

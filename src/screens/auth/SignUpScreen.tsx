@@ -67,7 +67,7 @@ const SignUpScreen = ({navigation}: any) => {
 
       <SpaceComponent height={16} />
       {/* button sign in  */}
-      <SectionComponent styles={[{alignItems: 'center'}]}>
+      <SectionComponent>
         <ButtonComponent text="SIGN UP" type="primary" />
       </SectionComponent>
       {/* social login: google, facebook */}

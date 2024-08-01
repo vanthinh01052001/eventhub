@@ -76,14 +76,14 @@ const LoginScreen = ({navigation}: any) => {
           {/* forgot password  */}
           <ButtonComponent
             text="Forgot Password?"
-            onPress={() => {}}
+            onPress={() => navigation.navigate('ForgotPassword')}
             type="link"
           />
         </RowComponent>
       </SectionComponent>
       <SpaceComponent height={16} />
       {/* button sign in  */}
-      <SectionComponent styles={[{alignItems: 'center'}]}>
+      <SectionComponent>
         <ButtonComponent text="SIGN IN" type="primary" />
       </SectionComponent>
       {/* social login: google, facebook */}
