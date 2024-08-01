@@ -18,6 +18,15 @@ const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRemember, setIsRemember] = useState(true);
+  const handleLogin = async () => {
+    const api = `http://192.168.42.160:3001/hello`;
+    try {
+      const res = await fetch(api, {method: 'get'});
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <ContainerComponent isImageBackground isScroll>
       {/* logo  */}
@@ -84,7 +93,7 @@ const LoginScreen = ({navigation}: any) => {
       <SpaceComponent height={16} />
       {/* button sign in  */}
       <SectionComponent>
-        <ButtonComponent text="SIGN IN" type="primary" />
+        <ButtonComponent onPress={handleLogin} text="SIGN IN" type="primary" />
       </SectionComponent>
       {/* social login: google, facebook */}
       <SocialLogin />
