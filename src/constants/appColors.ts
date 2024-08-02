@@ -4,9 +4,11 @@ export const appColors = {
     placeholder: "#747688",
     text: '#120D26',
     link: '#5669FF',
+    danger: '#e74c3c',
     gray: '#807A7A',
     gray2: '#DADADA',
     gray3: "#E4DFDF",
     gray4: "#9D9898",
     purple: '#3D56F0',
+    overflow: "rgba(0,0,0,0.5)"
 }
