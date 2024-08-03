@@ -19,9 +19,7 @@ const AppRouters = () => {
       if (res) {
         dispatch(addAuth(JSON.parse(res)));
       }
-    } catch (error) {
-      // console.error('Failed to fetch the auth token from async storage', error);
-    }
+    } catch (error) {}
   }, [dispatch, getItem]);
 
   useEffect(() => {
