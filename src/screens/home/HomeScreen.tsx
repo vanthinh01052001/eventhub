@@ -1,15 +1,21 @@
-import {View, Text, Button} from 'react-native';
 import React from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Button, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {removeAuth} from '../../redux/reducers/authReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>HomeScreen</Text>
-      <Button title="Logout" onPress={() => dispatch(removeAuth({}))} />
+      <Button
+        title="Logout"
+        onPress={async () => {
+          await AsyncStorage.removeItem('auth');
+          dispatch(removeAuth({}));
+        }}
+      />
     </View>
   );
 };

@@ -1,5 +1,5 @@
 import {View, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import MainNavigator from './MainNavigator';
 import AuthNavigator from './AuthNavigator';
 import {useAsyncStorage} from '@react-native-async-storage/async-storage';
@@ -13,18 +13,24 @@ const AppRouters = () => {
   const dispatch = useDispatch();
   const [isShowSplash, setIsShowSplash] = useState(true);
 
+  const checkLogin = useCallback(async () => {
+    try {
+      const res = await getItem();
+      if (res) {
+        dispatch(addAuth(JSON.parse(res)));
+      }
+    } catch (error) {
+      // console.error('Failed to fetch the auth token from async storage', error);
+    }
+  }, [dispatch, getItem]);
+
   useEffect(() => {
-    checkLogin();
     const timeout = setTimeout(() => {
       setIsShowSplash(false);
+      checkLogin();
     }, 1500);
     return () => clearTimeout(timeout);
-  }, []);
-
-  const checkLogin = async () => {
-    const res = await getItem();
-    res && dispatch(addAuth(JSON.parse(res)));
-  };
+  }, [checkLogin]);
 
   return (
     <>
