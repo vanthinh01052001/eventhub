@@ -125,6 +125,7 @@ const LoginScreen = ({navigation}: any) => {
                 value={isRemember}
                 onChange={() => setIsRemember(!isRemember)}
               />
+              <SpaceComponent width={4} />
               <TextComponent styles={{marginLeft: 5}} text="Remember me" />
             </RowComponent>
             {/* forgot password  */}

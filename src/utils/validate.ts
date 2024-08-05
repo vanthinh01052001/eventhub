@@ -19,20 +19,22 @@ export class Validate {
     static password(pwd: string): { isValid: boolean, error?: string } {
         const minLength = 8;
         const errors: string[] = [];
-
-        if (pwd.length < minLength) {
-            errors.push(`Password must be at least ${minLength} characters long.`);
+        if (!pwd) {
+            errors.push('Password is required.' );
         }
-        if (!/[A-Z]/.test(pwd)) {
+
+        else if (pwd.length < minLength) {
+            errors.push(`Password must be at least ${minLength} characters long.`);
+        } else if (!/[A-Z]/.test(pwd)) {
             errors.push('Password must contain at least one uppercase letter.');
         }
-        if (!/[a-z]/.test(pwd)) {
+        else if (!/[a-z]/.test(pwd)) {
             errors.push('Password must contain at least one lowercase letter.');
         }
-        if (!/\d/.test(pwd)) {
+        else if (!/\d/.test(pwd)) {
             errors.push('Password must contain at least one number.');
         }
-        if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
+        else if (!/[!@#$%^&*(),.?":{}|<>]/.test(pwd)) {
             errors.push('Password must contain at least one special character.');
         }
 

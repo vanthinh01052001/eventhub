@@ -23,6 +23,7 @@ interface Props {
   allowClear?: boolean;
   type?: KeyboardType;
   otp?: boolean;
+  onEnd?: () => void;
 }
 const InputComponent = (props: Props) => {
   const {
@@ -35,6 +36,7 @@ const InputComponent = (props: Props) => {
     allowClear,
     type,
     otp,
+    onEnd,
   } = props;
   const [isShowPass, setIsShowPass] = useState(isPassword ?? false);
   return (
@@ -49,6 +51,7 @@ const InputComponent = (props: Props) => {
         secureTextEntry={isShowPass}
         keyboardType={type ?? 'default'}
         autoCapitalize="none"
+        onEndEditing={onEnd}
       />
       {suffix ?? suffix}
       <TouchableOpacity
