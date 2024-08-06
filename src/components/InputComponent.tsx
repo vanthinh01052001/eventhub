@@ -22,7 +22,6 @@ interface Props {
   isPassword?: boolean;
   allowClear?: boolean;
   type?: KeyboardType;
-  otp?: boolean;
   onEnd?: () => void;
 }
 const InputComponent = (props: Props) => {
@@ -35,12 +34,11 @@ const InputComponent = (props: Props) => {
     isPassword,
     allowClear,
     type,
-    otp,
     onEnd,
   } = props;
   const [isShowPass, setIsShowPass] = useState(isPassword ?? false);
   return (
-    <View style={[otp ? inputStyles.otp : inputStyles.inpuContainer]}>
+    <View style={[inputStyles.inpuContainer]}>
       {affix ?? affix}
       <TextInput
         value={value}

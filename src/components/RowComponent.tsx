@@ -20,7 +20,7 @@ const RowComponent = (props: Props) => {
   const localStyle = [
     globalStyles.row,
     {
-      justifyContent: justify,
+      justifyContent: justify ?? 'center',
     },
     styles,
   ];
