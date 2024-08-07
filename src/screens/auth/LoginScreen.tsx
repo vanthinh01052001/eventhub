@@ -1,5 +1,5 @@
 import {Lock, Sms} from 'iconsax-react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, Switch} from 'react-native';
 import {
   ButtonComponent,
@@ -27,6 +27,17 @@ const LoginScreen = ({navigation}: any) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [isRemember, setIsRemember] = useState(true);
+  const [isDisable, setIsDisable] = useState(true);
+
+  useEffect(() => {
+    const emailValidation = Validate.email(email);
+    if (!email || !password || !emailValidation) {
+      setIsDisable(true);
+    } else {
+      setIsDisable(false);
+    }
+  }, [email, password]);
+
   const handleLogin = async () => {
     if (email && password) {
       const emailValidation = Validate.email(email);
@@ -140,6 +151,7 @@ const LoginScreen = ({navigation}: any) => {
         {/* button sign in  */}
         <SectionComponent>
           <ButtonComponent
+            disable={isDisable}
             onPress={handleLogin}
             text="SIGN IN"
             type="primary"

@@ -1,5 +1,5 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {appColors} from '../../../constants/appColors';
 import {
   ButtonComponent,
@@ -9,8 +9,43 @@ import {
 } from '../../../components';
 import {fontFamilies} from '../../../constants/fontFamilies';
 import {Facebook, Google} from '../../../assets/svgs';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import authenticationAPI from '../../../apis/authApi';
+import {useDispatch} from 'react-redux';
+import {addAuth} from '../../../redux/reducers/authReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+GoogleSignin.configure({
+  webClientId:
+    '99750319644-c7ad6f1qjqkufi4k16uo7hdmhc64aucg.apps.googleusercontent.com',
+});
 
 const SocialLogin = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const handleLoginWithGoogle = async () => {
+    await GoogleSignin.hasPlayServices({
+      showPlayServicesUpdateDialog: true,
+    });
+
+    const api = `/google-signin`;
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+
+      const user = userInfo.user;
+      const res: any = await authenticationAPI.HandleAuthentication(
+        api,
+        user,
+        'post',
+      );
+      console.log('res.data', res.data);
+      dispatch(addAuth(res.data));
+      await AsyncStorage.setItem('auth', JSON.stringify(res.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SectionComponent>
       <TextComponent
@@ -22,6 +57,7 @@ const SocialLogin = () => {
       />
       <SpaceComponent height={16} />
       <ButtonComponent
+        onPress={handleLoginWithGoogle}
         type="primary"
         color={appColors.white}
         textColor={appColors.text}
