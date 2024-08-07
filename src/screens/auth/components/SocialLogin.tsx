@@ -14,10 +14,18 @@ import authenticationAPI from '../../../apis/authApi';
 import {useDispatch} from 'react-redux';
 import {addAuth} from '../../../redux/reducers/authReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  LoginButton,
+  LoginManager,
+  Profile,
+  Settings,
+} from 'react-native-fbsdk-next';
+import {LoadingModal} from '../../../modals';
 GoogleSignin.configure({
   webClientId:
     '99750319644-c7ad6f1qjqkufi4k16uo7hdmhc64aucg.apps.googleusercontent.com',
 });
+Settings.setAppID('2742952155874676');
 
 const SocialLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,11 +47,43 @@ const SocialLogin = () => {
         user,
         'post',
       );
-      console.log('res.data', res.data);
       dispatch(addAuth(res.data));
       await AsyncStorage.setItem('auth', JSON.stringify(res.data));
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleLoginWithFacebook = async () => {
+    const api = `/facebook-signin`;
+    try {
+      const result = await LoginManager.logInWithPermissions([
+        'public_profile',
+      ]);
+      if (result.isCancelled) {
+        console.log('Login cancel');
+      } else {
+        const profile = await Profile.getCurrentProfile();
+        if (profile) {
+          setIsLoading(true);
+          const data = {
+            fullname: profile.name,
+            email: profile.email ?? profile.userID,
+            photoUrl: profile.imageURL,
+          };
+          const res: any = await authenticationAPI.HandleAuthentication(
+            api,
+            data,
+            'post',
+          );
+          dispatch(addAuth(res.data));
+          await AsyncStorage.setItem('auth', JSON.stringify(res.data));
+          setIsLoading(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
     }
   };
   return (
@@ -67,6 +107,7 @@ const SocialLogin = () => {
         iconFlex="left"
       />
       <ButtonComponent
+        onPress={handleLoginWithFacebook}
         type="primary"
         color={appColors.white}
         textColor={appColors.text}
@@ -75,6 +116,7 @@ const SocialLogin = () => {
         icon={<Facebook />}
         iconFlex="left"
       />
+      <LoadingModal visible={isLoading} />
     </SectionComponent>
   );
 };
