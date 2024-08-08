@@ -4,7 +4,8 @@ import RowComponent from "./RowComponent";
 import SectionComponent from "./SectionComponent";
 import SpaceComponent from "./SpaceComponent";
 import TextComponent from "./TextComponent";
+import CircleComponent from "./CircleComponent";
 
 export {
-    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent
+    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent
 }

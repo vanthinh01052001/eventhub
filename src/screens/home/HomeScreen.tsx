@@ -1,25 +1,78 @@
+import {HambergerMenu, Notification} from 'iconsax-react-native';
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Platform, StatusBar, TouchableOpacity, View} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
-import {removeAuth} from '../../redux/reducers/authReducer';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {GoogleSignin} from '@react-native-google-signin/google-signin';
-import {LoginManager} from 'react-native-fbsdk-next';
+import {CircleComponent, RowComponent, TextComponent} from '../../components';
+import {appColors} from '../../constants/appColors';
+import {fontFamilies} from '../../constants/fontFamilies';
+import {globalStyles} from '../../styles';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
   const dispatch = useDispatch();
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>HomeScreen</Text>
-      <Button
-        title="Logout"
-        onPress={async () => {
-          await AsyncStorage.removeItem('auth');
-          await GoogleSignin.signOut();
-          LoginManager.logOut();
-          dispatch(removeAuth({}));
-        }}
-      />
+    <View style={[globalStyles.container]}>
+      <StatusBar barStyle={'light-content'} />
+      <View
+        style={{
+          backgroundColor: appColors.primary,
+          height: 179,
+          borderBottomLeftRadius: 40,
+          borderBottomRightRadius: 40,
+          paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 52,
+          paddingHorizontal: 24,
+        }}>
+        <RowComponent>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <HambergerMenu size={24} color={appColors.white} />
+          </TouchableOpacity>
+          <View
+            style={[{flex: 1, alignItems: 'center', justifyContent: 'center'}]}>
+            <RowComponent>
+              <TextComponent
+                text="Current Location"
+                color={appColors.white2}
+                size={12}
+              />
+              <MaterialIcons
+                name="arrow-drop-down"
+                size={18}
+                color={appColors.white}
+              />
+            </RowComponent>
+            <TextComponent
+              text="New York, USA"
+              color={appColors.white}
+              font={fontFamilies.medium}
+              size={13}
+            />
+          </View>
+          <CircleComponent color={appColors.purple1} size={36}>
+            <View>
+              <Notification size={18} color={appColors.white} />
+              <View
+                style={{
+                  backgroundColor: appColors.blue,
+                  width: 10,
+                  height: 10,
+                  borderRadius: 8,
+                  borderWidth: 2,
+                  borderColor: appColors.purple3,
+                  position: 'absolute',
+                  top: -2,
+                  right: -2,
+                }}
+              />
+            </View>
+          </CircleComponent>
+        </RowComponent>
+      </View>
+      <View
+        style={[
+          {
+            flex: 1,
+          },
+        ]}></View>
     </View>
   );
 };

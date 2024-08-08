@@ -1,6 +1,7 @@
 export const appColors = {
     primary: '#5669FF',
     white: '#ffffff',
+    white2: '#fcfcfc',
     placeholder: "#747688",
     text: '#120D26',
     link: '#5669FF',
@@ -9,6 +10,11 @@ export const appColors = {
     gray2: '#DADADA',
     gray3: "#E4DFDF",
     gray4: "#9D9898",
+    gray5: "#d9d9d9",
     purple: '#3D56F0',
+    purple1: '#5c56ef',
+    purple2: '#544ee1',
+    purple3: '#524CE0',
+    blue:"#02E9FE",
     overflow: "rgba(0,0,0,0.5)"
 }
