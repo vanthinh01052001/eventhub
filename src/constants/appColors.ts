@@ -1,3 +1,5 @@
+import { blue } from "react-native-reanimated/lib/typescript/Colors";
+
 export const appColors = {
     primary: '#5669FF',
     white: '#ffffff',
@@ -15,6 +17,10 @@ export const appColors = {
     purple1: '#5c56ef',
     purple2: '#544ee1',
     purple3: '#524CE0',
+    purple4: '#5D56F3',
+    purple5: '#a39ef1',
     blue:"#02E9FE",
+    blue1: '#00F8FF',
+    blue2: '#e4ffff',
     overflow: "rgba(0,0,0,0.5)"
 }

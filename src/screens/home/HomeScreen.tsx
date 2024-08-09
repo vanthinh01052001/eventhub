@@ -1,9 +1,21 @@
-import {HambergerMenu, Notification} from 'iconsax-react-native';
+import {
+  HambergerMenu,
+  Notification,
+  SearchNormal,
+  SearchNormal1,
+  Sort,
+} from 'iconsax-react-native';
 import React from 'react';
 import {Platform, StatusBar, TouchableOpacity, View} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch} from 'react-redux';
-import {CircleComponent, RowComponent, TextComponent} from '../../components';
+import {
+  CircleComponent,
+  RowComponent,
+  SpaceComponent,
+  TagComponent,
+  TextComponent,
+} from '../../components';
 import {appColors} from '../../constants/appColors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {globalStyles} from '../../styles';
@@ -65,6 +77,52 @@ const HomeScreen = ({navigation}: any) => {
               />
             </View>
           </CircleComponent>
+        </RowComponent>
+        <SpaceComponent height={24} />
+        <RowComponent>
+          <RowComponent
+            styles={{flex: 1}}
+            onPress={() =>
+              navigation.navigate('SearchEvents', {
+                isFilter: false,
+              })
+            }>
+            <SearchNormal1
+              size={20}
+              variant="TwoTone"
+              color={appColors.white}
+            />
+            <View
+              style={[
+                {
+                  width: 1,
+                  backgroundColor: appColors.gray2,
+                  marginHorizontal: 10,
+                  height: 20,
+                },
+              ]}
+            />
+            <TextComponent
+              flex={1}
+              text="Search..."
+              color={appColors.gray2}
+              size={16}
+            />
+          </RowComponent>
+          <TagComponent
+            bgColor={appColors.purple4}
+            onPress={() =>
+              navigation.navigate('SearchEvents', {
+                isFilter: true,
+              })
+            }
+            label="Filters"
+            icon={
+              <CircleComponent color={appColors.purple5} size={20}>
+                <Sort size={16} color={appColors.purple4} />
+              </CircleComponent>
+            }
+          />
         </RowComponent>
       </View>
       <View

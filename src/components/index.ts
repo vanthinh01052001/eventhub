@@ -5,7 +5,8 @@ import SectionComponent from "./SectionComponent";
 import SpaceComponent from "./SpaceComponent";
 import TextComponent from "./TextComponent";
 import CircleComponent from "./CircleComponent";
+import TagComponent from "./TagComponent";
 
 export {
-    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent
+    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent, TagComponent
 }

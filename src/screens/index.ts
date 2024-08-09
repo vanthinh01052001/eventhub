@@ -6,6 +6,7 @@ import Verification from "./auth/Verification";
 import HomeScreen from "./home/HomeScreen";
 
 import EventsScreen from "./events/EventsScreen";
+import SearchEvents from "./events/SearchEvents";
 
 import MapScreen from "./maps/MapScreen";
 
@@ -24,5 +25,6 @@ export {
     AddNewScreen,
     EventsScreen,
     MapScreen,
-    ProfileScreen
+    ProfileScreen,
+    SearchEvents    
 }

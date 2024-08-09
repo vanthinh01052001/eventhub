@@ -40,11 +40,15 @@ const SocialLogin = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-
       const user = userInfo.user;
+      const data = {
+        fullname: user.name,
+        email: user.email,
+        photoUrl: user.photo,
+      };
       const res: any = await authenticationAPI.HandleAuthentication(
         api,
-        user,
+        data,
         'post',
       );
       dispatch(addAuth(res.data));
