@@ -22,5 +22,9 @@ export const appColors = {
     blue:"#02E9FE",
     blue1: '#00F8FF',
     blue2: '#e4ffff',
+    blue3:'#46CDFB',
+    cyan: '#29D697',
+    red: '#F0635A',
+    orange: '#F59762',
     overflow: "rgba(0,0,0,0.5)"
 }
