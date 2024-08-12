@@ -169,8 +169,14 @@ const HomeScreen = ({navigation}: any) => {
             marginTop: 16,
           },
         ]}>
-        <SectionComponent styles={{paddingHorizontal: 0, paddingTop: 20}}>
+        <SectionComponent
+          styles={{
+            paddingHorizontal: 0,
+            paddingTop: 20,
+            paddingBottom: 0,
+          }}>
           <TabBarComponent title="Upcoming Events" onPress={() => {}} />
+          <SpaceComponent height={5} />
           <FlatList
             showsHorizontalScrollIndicator={false}
             horizontal
@@ -180,7 +186,7 @@ const HomeScreen = ({navigation}: any) => {
             )}
           />
         </SectionComponent>
-        <SectionComponent>
+        <SectionComponent styles={{paddingBottom: 0}}>
           <ImageBackground
             style={{flex: 1, padding: 16, minHeight: 127}}
             imageStyle={{resizeMode: 'contain', borderRadius: 12}}
@@ -212,6 +218,7 @@ const HomeScreen = ({navigation}: any) => {
         </SectionComponent>
         <SectionComponent styles={{paddingHorizontal: 0, paddingTop: 20}}>
           <TabBarComponent title="Nearby You" onPress={() => {}} />
+          <SpaceComponent height={5} />
           <FlatList
             showsHorizontalScrollIndicator={false}
             horizontal
