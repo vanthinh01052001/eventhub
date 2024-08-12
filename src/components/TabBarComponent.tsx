@@ -13,7 +13,7 @@ interface Props {
 const TabBarComponent = (props: Props) => {
   const {title, onPress} = props;
   return (
-    <RowComponent styles={{marginBottom: 20, paddingHorizontal: 16}}>
+    <RowComponent styles={{paddingHorizontal: 16}}>
       <TextComponent text={title} title flex={1} size={18} />
       <RowComponent onPress={onPress}>
         <TextComponent text="See All" size={14} color={appColors.placeholder} />

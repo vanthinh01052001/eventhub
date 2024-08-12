@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import {
   FlatList,
+  ImageBackground,
   Platform,
   ScrollView,
   StatusBar,
@@ -17,6 +18,7 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useDispatch, useSelector} from 'react-redux';
 import {
+  CardComponent,
   CategoriesList,
   CircleComponent,
   EventItem,
@@ -169,6 +171,47 @@ const HomeScreen = ({navigation}: any) => {
         ]}>
         <SectionComponent styles={{paddingHorizontal: 0, paddingTop: 20}}>
           <TabBarComponent title="Upcoming Events" onPress={() => {}} />
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={Array.from({length: 5})}
+            renderItem={({item, index}) => (
+              <EventItem key={`event${index}`} item={itemEvent} type="card" />
+            )}
+          />
+        </SectionComponent>
+        <SectionComponent>
+          <ImageBackground
+            style={{flex: 1, padding: 16, minHeight: 127}}
+            imageStyle={{resizeMode: 'contain', borderRadius: 12}}
+            source={require('../../assets/images/invite-img.png')}>
+            <TextComponent
+              text="Invite your friends"
+              size={18}
+              font={fontFamilies.semiBold}
+            />
+            <TextComponent text="Get $20 for ticket" />
+            <RowComponent justify="flex-start">
+              <TouchableOpacity
+                style={[
+                  globalStyles.button,
+                  {
+                    backgroundColor: appColors.blue1,
+                    paddingHorizontal: 20,
+                    marginTop: 12,
+                  },
+                ]}>
+                <TextComponent
+                  text="INVITE"
+                  color={appColors.white}
+                  font={fontFamilies.semiBold}
+                />
+              </TouchableOpacity>
+            </RowComponent>
+          </ImageBackground>
+        </SectionComponent>
+        <SectionComponent styles={{paddingHorizontal: 0, paddingTop: 20}}>
+          <TabBarComponent title="Nearby You" onPress={() => {}} />
           <FlatList
             showsHorizontalScrollIndicator={false}
             horizontal
