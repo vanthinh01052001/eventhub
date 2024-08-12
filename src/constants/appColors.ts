@@ -6,6 +6,7 @@ export const appColors = {
     white2: '#fcfcfc',
     placeholder: "#747688",
     text: '#120D26',
+    text1: '#716E90',
     link: '#5669FF',
     danger: '#e74c3c',
     gray: '#807A7A',

@@ -7,7 +7,11 @@ import TextComponent from "./TextComponent";
 import CircleComponent from "./CircleComponent";
 import TagComponent from "./TagComponent";
 import CategoriesList from "./CategoriesList";
+import TabBarComponent from "./TabBarComponent";
+import EventItem from "./EventItem";
+import CardComponent from "./CardComponent";
+import AvatarGroup from "./AvatarGroup";
 
 export {
-    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent, TagComponent, CategoriesList
+    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent, TagComponent, CategoriesList, TabBarComponent, EventItem, CardComponent, AvatarGroup
 }

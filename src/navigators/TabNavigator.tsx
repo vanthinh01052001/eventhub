@@ -21,7 +21,7 @@ const TabNavigator = () => {
       screenOptions={({route}) => ({
         headerShown: false,
         tabBarStyle: {
-          height: Platform.OS === 'ios' ? 88 : 68,
+          height: 68,
           justifyContent: 'center',
           alignItems: 'center',
           backgroundColor: appColors.white,
@@ -39,9 +39,7 @@ const TabNavigator = () => {
               break;
             case 'Add':
               icon = (
-                <CircleComponent
-                  size={52}
-                  styles={[{marginBottom: Platform.OS === 'ios' ? 50 : 60}]}>
+                <CircleComponent size={52} styles={[{marginBottom: 60}]}>
                   <AddSquare size={32} color={appColors.white} variant="Bold" />
                 </CircleComponent>
               );
@@ -66,7 +64,7 @@ const TabNavigator = () => {
               text={route.name}
               size={12}
               color={focused ? appColors.primary : appColors.gray}
-              styles={{marginBottom: Platform.OS === 'android' ? 12 : 0}}
+              styles={{marginBottom: 12}}
             />
           );
         },

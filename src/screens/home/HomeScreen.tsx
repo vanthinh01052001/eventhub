@@ -6,33 +6,60 @@ import {
   Sort,
 } from 'iconsax-react-native';
 import React from 'react';
-import {Platform, StatusBar, TouchableOpacity, View} from 'react-native';
+import {
+  FlatList,
+  Platform,
+  ScrollView,
+  StatusBar,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   CategoriesList,
   CircleComponent,
+  EventItem,
   RowComponent,
+  SectionComponent,
   SpaceComponent,
+  TabBarComponent,
   TagComponent,
   TextComponent,
 } from '../../components';
 import {appColors} from '../../constants/appColors';
 import {fontFamilies} from '../../constants/fontFamilies';
 import {globalStyles} from '../../styles';
+import {authSelector} from '../../redux/reducers/authReducer';
 
 const HomeScreen = ({navigation}: any) => {
   const dispatch = useDispatch();
+  const auth = useSelector(authSelector);
+  const itemEvent = {
+    title: 'International Band Music Concert',
+    description:
+      'Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase.',
+    imageUrl: '',
+    location: {
+      title: 'Gala Convention Center',
+      address: '36 Guild Street London, UK ',
+    },
+    users: [''],
+    authorId: '',
+    startAt: Date.now(),
+    endAt: Date.now(),
+    date: Date.now(),
+  };
   return (
     <View style={[globalStyles.container]}>
       <StatusBar barStyle={'light-content'} />
       <View
         style={{
           backgroundColor: appColors.primary,
-          height: Platform.OS === 'android' ? 168 : 182,
+          height: 168,
           borderBottomLeftRadius: 40,
           borderBottomRightRadius: 40,
-          paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 52,
+          paddingTop: StatusBar.currentHeight,
         }}>
         <View style={[{paddingHorizontal: 24}]}>
           <RowComponent>
@@ -133,12 +160,25 @@ const HomeScreen = ({navigation}: any) => {
           <CategoriesList isFill />
         </View>
       </View>
-      <View
+      <ScrollView
         style={[
           {
             flex: 1,
+            marginTop: 16,
           },
-        ]}></View>
+        ]}>
+        <SectionComponent styles={{paddingHorizontal: 0, paddingTop: 20}}>
+          <TabBarComponent title="Upcoming Events" onPress={() => {}} />
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={Array.from({length: 5})}
+            renderItem={({item, index}) => (
+              <EventItem key={`event${index}`} item={itemEvent} type="card" />
+            )}
+          />
+        </SectionComponent>
+      </ScrollView>
     </View>
   );
 };

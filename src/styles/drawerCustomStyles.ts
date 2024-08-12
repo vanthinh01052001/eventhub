@@ -4,7 +4,7 @@ import { appColors } from "../constants/appColors";
 export const drawerCustomStyles = StyleSheet.create({
     container: {
         padding: 16,
-        paddingVertical: Platform.OS === 'android' ? StatusBar.currentHeight: 48,
+        paddingVertical:StatusBar.currentHeight,
         flex: 1
     },
     avatar: {
