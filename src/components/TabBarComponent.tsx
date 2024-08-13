@@ -8,17 +8,23 @@ import {ArrowRight2} from 'iconsax-react-native';
 import {fontFamilies} from '../constants/fontFamilies';
 interface Props {
   title: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 const TabBarComponent = (props: Props) => {
   const {title, onPress} = props;
   return (
     <RowComponent styles={{paddingHorizontal: 16}}>
       <TextComponent text={title} title flex={1} size={18} />
-      <RowComponent onPress={onPress}>
-        <TextComponent text="See All" size={14} color={appColors.placeholder} />
-        <ArrowRight2 size={14} color={appColors.placeholder} />
-      </RowComponent>
+      {onPress && (
+        <RowComponent onPress={onPress}>
+          <TextComponent
+            text="See All"
+            size={14}
+            color={appColors.placeholder}
+          />
+          <ArrowRight2 size={14} color={appColors.placeholder} />
+        </RowComponent>
+      )}
     </RowComponent>
   );
 };

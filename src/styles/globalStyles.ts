@@ -68,6 +68,7 @@ export const globalStyles = StyleSheet.create({
         height: 45,
         marginVertical: 0,
         marginHorizontal: 0,
+        marginBottom: 0,
         padding: 0,
         justifyContent: 'center',
         },

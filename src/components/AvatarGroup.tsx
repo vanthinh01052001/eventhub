@@ -6,7 +6,11 @@ import {appColors} from '../constants/appColors';
 import {fontFamilies} from '../constants/fontFamilies';
 import SpaceComponent from './SpaceComponent';
 
-const AvatarGroup = () => {
+interface Props {
+  size?: number;
+}
+const AvatarGroup = (props: Props) => {
+  const {size} = props;
   const avtURL =
     'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
   return (
@@ -18,8 +22,8 @@ const AvatarGroup = () => {
             key={`img-${index}`}
             source={{uri: avtURL}}
             style={{
-              width: 24,
-              height: 24,
+              width: size ?? 24,
+              height: size ?? 24,
               borderRadius: 100,
               borderWidth: 1,
               borderColor: appColors.white,
@@ -31,7 +35,7 @@ const AvatarGroup = () => {
       <TextComponent
         text="+20 Going"
         color={appColors.primary}
-        size={12}
+        size={12 + (size ? (size - 24) / 4 : 0)}
         font={fontFamilies.semiBold}
       />
     </RowComponent>
