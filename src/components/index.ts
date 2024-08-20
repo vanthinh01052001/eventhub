@@ -11,7 +11,8 @@ import TabBarComponent from "./TabBarComponent";
 import EventItem from "./EventItem";
 import CardComponent from "./CardComponent";
 import AvatarGroup from "./AvatarGroup";
+import ChoiceLocation from "./ChoiceLocation";
 
 export {
-    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent, TagComponent, CategoriesList, TabBarComponent, EventItem, CardComponent, AvatarGroup
+    SpaceComponent, TextComponent, ButtonComponent, InputComponent, SectionComponent, RowComponent, CircleComponent, TagComponent, CategoriesList, TabBarComponent, EventItem, CardComponent, AvatarGroup, ChoiceLocation
 }

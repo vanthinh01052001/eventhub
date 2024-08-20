@@ -20,6 +20,7 @@ export const appColors = {
     purple3: '#524CE0',
     purple4: '#5D56F3',
     purple5: '#a39ef1',
+    purple6: '#e6e9ff',
     blue:"#02E9FE",
     blue1: '#00F8FF',
     blue2: '#e4ffff',

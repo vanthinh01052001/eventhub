@@ -4,6 +4,8 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardType,
+  StyleProp,
+  ViewStyle,
 } from 'react-native';
 import React, {ReactNode, useState} from 'react';
 import {EyeSlash} from 'iconsax-react-native';
@@ -23,6 +25,9 @@ interface Props {
   allowClear?: boolean;
   type?: KeyboardType;
   onEnd?: () => void;
+  multiline?: boolean;
+  numberOfLine?: number;
+  styles?: StyleProp<ViewStyle>;
 }
 const InputComponent = (props: Props) => {
   const {
@@ -35,12 +40,22 @@ const InputComponent = (props: Props) => {
     allowClear,
     type,
     onEnd,
+    multiline,
+    numberOfLine,
+    styles,
   } = props;
   const [isShowPass, setIsShowPass] = useState(isPassword ?? false);
   return (
-    <View style={[inputStyles.inpuContainer]}>
+    <View
+      style={[
+        inputStyles.inpuContainer,
+        {alignItems: multiline ? 'flex-start' : 'center'},
+        styles,
+      ]}>
       {affix ?? affix}
       <TextInput
+        numberOfLines={numberOfLine}
+        multiline={multiline}
         value={value}
         style={[inputStyles.textInput, globalStyles.text]}
         placeholder={placeholder ?? ''}
